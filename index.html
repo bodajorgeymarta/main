@@ -1,0 +1,618 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>¡Bienvenidos a nuestra boda!</title>
+    <meta name="description" content="Nos gustaría invitaros a nuestro gran día.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="¡Bienvenidos a nuestra boda!">
+    <meta property="og:description" content="Nos gustaría invitaros a nuestro gran día.">
+    <meta property="og:image" content="https://wedding.ramswaroop.me/img/hero-min3.jpg">
+    <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+
+    <script>
+        // load css files from CDN if local node_modules fail
+        function loadCssFromCDN(css) {
+            // create new link tag
+            const link = document.createElement('link');
+            if (css === 'animate.css') {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css';
+            } else if (css === 'font-awesome.css') {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+            }
+            link.rel = 'stylesheet';
+
+            // add link tag to head section
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+
+        // load js files from CDN if local node_modules fail
+        function loadJsFromCDN(js) {
+            if (js === 'waypoints.js') {
+                document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"><\/script>');
+            } else if (js === 'jquery.js') {
+                document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"><\/script>');
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/queries.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script> 
+</head>
+<body id="top">
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<section class="hero">
+    <section class="navigation fixed">
+        <header>
+            <div class="header-content">
+                <div class="logo"><a href="#"><img src="img/logoBoda.png" alt="Logo"></a></div>
+                <div class="header-nav">
+                    <nav>
+                        <ul class="primary-nav">
+                            <li><a href="#invitation">Save the Date</a></li>
+                            <li><a href="#intro">Nuestra Historia</a></li>
+                            <li><a href="#events">Agenda</a></li>
+                            <li><a href="#instagram">Instagram</a></li>
+                            <li class="hidden-sm hidden-xs"><a href="#video-bg">Un vistazo al evento</a></li>
+                            <li><a href="#alojamiento">Alojamiento</a></li>
+                            <li><a href="#contactdetails">Contacto</a></li>
+                        </ul>
+                        <ul class="member-actions">
+                            <li><a href="#rsvp" class="btn-white btn-small">Confirmar Asistencia</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="navicon">
+                    <a class="nav-toggle" href="#"><span></span></a>
+                </div>
+            </div>
+        </header>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="hero-content text-center">
+                    <!--<h1>Jorge & Marta</h1>-->
+                    <img src="img/logo5.png">
+                    <!--<p class="intro">¡Bienvenidos a nuestra boda!</p>-->
+                    <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 hidden-xs"></div>
+            <div class="col-sm-4 text-center"><a href="#rsvp"
+                                                           class="btn btn-accent btn-large rsvp-btn">Confirmar Asistencia</a></div>
+            <div class="col-sm-4 hidden-xs"></div>
+        </div>
+    </div>
+    <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
+</section>
+
+<section id="invitation" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>¡Nos casamos!</h3>
+                <p>Ha sido una aventura increíble hasta ahora y no podemos esperar a vivir este nuevo capítulo. 
+                    ¡Sería aún más especial si formarais parte de este día! 🥳 </p>
+                <div class="overlay"></div>
+                    <div class="wrapper">
+                        <div class="">
+                            <h3 class="title"><span></span>21 de Septiembre de 2024</h3><br>
+                            <div class="countdown-container">
+                                <div>
+                                    <p id="days" class="big-text">0</p>
+                                    <span>Días</span>
+                                </div>
+                                <div>
+                                    <p id="hours" class="big-text">0</p>
+                                    <span>Horas</span>
+                                </div>
+                                <div>
+                                    <p id="min" class="big-text">0</p>
+                                    <span>Minutos</span>
+                                </div>
+                                <div>
+                                    <p id="sec" class="big-text">0</p>
+                                    <span>Segundos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="header">Nuestra Historia</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/web_1.png" class="wp1"></div>
+            <div class="col-md-6">
+                <p>
+                    Todo comenzó hace cuatro años, en una época de días inciertos por la pandemia.
+                    Fue una época donde las amistades se convirtieron en uno de nuestros mayores refugios
+                    y, caprichos del destino, fue una amistad la que hizo que nuestras vidas se cruzaran por primera vez.<br><br>
+                    Entre mensaje y mensaje, lo que empezó como una amistad a distancia se transformó en
+                    encuentros en persona, primero con amigos y luego, de manera casi natural, solo nosotros dos. 
+                    Entre paseos, risas y charlas interminables, dejamos atrás la simple amistad. 
+                    Nuestros corazones, quizás sin saberlo, ya habían elegido.
+                    Un tiempo después y con el corazón acelerado llegó la pregunta que cambiaría nuestras vidas para siempre. <br><br>
+                    Hoy, mirando hacia atrás, nos damos cuenta de que cada paso, cada casualidad y cada decisión, nos llevó exactamente a donde 
+                    debíamos estar: aquí y ahora, listos para caminar juntos hacia el futuro. El resto, como se suele decir, es historia.
+                </p>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs"><img src="img/web_4.png" class="wp2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/web_1.png" class="wp8"></div>
+            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/web_2.png" class="wp9"></div>
+        </div>
+    </div>
+</section>
+
+<section class="events section-padding" id="events">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="header">Agenda</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <div class="wp3">
+                    <p><strong>21 de Septiembre</strong></p>
+
+                    <h5>Ceremonia <span class="time">18:00 - 19:00</span></h5>
+                    <p>La ceremonia religiosa tendrá lugar el sábado 21 de Septiembre
+                        en la <a href="#map">Iglesia Parroquial de la Inmaculada Concepción</a> a las 18:00.
+                    </p>
+                </div>
+                <div class="wp5">
+                    <h5>Cóctel de Bienvenida <span class="time">20:15 - 21:45</span></h5>
+                    <p>Tras la ceremonia continuaremos el evento en el <a href="#map2">Restaurante Essentia</a>.<br><br>
+                        A vuestra disposición habrá un servicio de autobuses 
+                        para llegar al Restaurante, aunque podréis llegar en vuestro coche personal. <br><br>
+                        Preparaos para comenzar la fiesta con el cóctel de bienvenida. 
+                        Será un momento relajado para charlar, reír y, sobre todo, para que nos pongamos todos en modo fiesta.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
+                <div class="wp4">
+                    <p><strong>21 de Septiembre</strong></p>
+
+                    <h5>Banquete <span class="time">22:00 - 00:30</span></h5>
+                    <p>Tras el Cóctel, nos moveremos al Banquete. Pensad en una cena entre amigos, pero a lo grande.
+                        Vamos a comer, beber y compartir historias. Hoy estamos aquí para pasarlo bien y saborear cada momento.
+                    </p>
+                </div>
+                <div class="wp6">
+                    <h5>Discoteca <span class="time">00:30 - 05:00</span></h5>
+                    <p>Y finalmente, ¡la discoteca! La música estará a tope, las luces encendidas y la pista de baile nos espera a todos. 
+                        No importa si sois de los que bailan hasta el amanecer o de los que prefieren charlar en un rincón con un buen ritmo de fondo, 
+                        lo importante es disfrutar. ¡Preparad vuestros mejores pasos de baile, que esta noche es para recordar y habrá sorpresas!<br><br>
+                        A vuestra disposición habrá un servicio de autobuses para trasladaros de vuelta a Horcajo de Santiago, 
+                        los cuales saldrán en 2 tandas: A las 02:30 y al finalizar el evento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="instagram" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>¡UNA IMÁGEN VALE MÁS QUE MIL PALABRAS!</h3>
+                <p>Ayúdanos a capturar los mejores momentos, etiqueta tus fotos con el hashtag
+                    <a href="https://instagram.com/explore/tags/bodacarramarta/" target="_blank">#BodaCarraMarta</a>
+                </p>
+            </div>
+        </div>
+        <div class="row section-border wp7">
+            <div class="col-md-4 col-md-offset-4">
+                <img src="img/insta1.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="video-bg" class="hidden-sm hidden-xs">
+    <div id="bgndVideo" class="player"
+         data-property="{videoURL:'https://youtu.be/MeEYLreMbpw?si=XqMjmziEetmJYF-g',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:4, stopAt:220, opacity:3}">
+    </div>
+    <div id="video-content">
+        <h5>Castilla-La Mancha</h5>
+        <p>La gran desconocida</p>
+    </div>
+</section>
+
+<section id="map" class="section-padding">
+    <div class="text-center">
+        <h3>¿Dónde es la Ceremonia?</h3>
+        <p></p>
+    </div>
+    <div id="map-canvas"></div>
+    <div id="map-content-wrapper" class="container pointer-events-none">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+                <div class="text-center">
+                    <div id="btn-show-content" class="toggle-map-content pointer-events-auto">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Mostrar info
+                    </div>
+                </div>
+                <div id="map-content" class="pointer-events-auto">
+                    <div class="row map-content-row">
+                        <div class="col-xs-12 col-md-6 map-text">
+                            <h5>
+                                <span class="line-break">Iglesia Parroquial</span><br>
+                                <span class="line-break">Inmaculada Concepción</span>
+                            </h5><br>                          
+                            <p>
+                                <span class="line-break2">Plaza del Cerrillo s/n, 16410</span>
+                                <span class="line-break2">Horcajo de Santiago, Cuenca</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-md-6 text-center map-image">
+                            <img src="img/iglesia.jpg" alt="Descripción de la imagen" style="max-width:100%; height:auto;">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div style="padding: 5px; margin-top: 30px;">
+                            <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Mostrar Mapa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map2" class="section-padding">
+    <div class="text-center">
+        <h3>¿Dónde se celebra el Banquete?</h3>
+        <p></p>
+    </div>
+    <div id="map-canvas2"></div>
+    <div id="map-content-wrapper2" class="container pointer-events-none">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+                <div class="text-center">
+                    <div id="btn-show-content2" class="toggle-map-content pointer-events-auto">
+                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Mostrar info
+                    </div>
+                </div>
+                <<div id="map-content2" class="pointer-events-auto">
+                    <div class="row map-content2-row">
+                        <div class="col-xs-12 col-md-6 map-text">
+                            <h5>
+                                <span class="line-break">Restaurante Essentia</span>
+                            </h5><br>
+                            <p>
+                                <span class="line-break2">Av. Adolfo Suárez 30, 16400</span>
+                                <span class="line-break2">Tarancón, Cuenca</span>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-md-6 text-center map-image">
+                            <img src="img/essentia.webp" alt="Descripción de la imagen" style="max-width:100%; height:auto;">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div style="padding: 5px; margin-top: 30px;">
+                            <a class="btn btn-accent btn-small" id="btn-show-map2"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Mostrar Mapa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="events section-padding" id="alojamiento">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="header">Alojamiento</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <div class="wp3">
+                    <p><strong>Tarancón</strong></p>
+
+                    <h5><a href="https://www.ansareshotel.com/" target="_blank" rel="noopener noreferrer">Hotel Ansares </a><span class="time">4*</span></h5>
+                    <p>Se trata del Hotel anexo al Restaurante Essentia (donde se celebra el Banquete).<br>
+                        Hemos gestionado con ellos un descuento en las habitaciones para los invitados a la boda
+                        que quieran quedarse. Podéis encontrar aquí la información de cómo reservar las habitaciones 
+                        y las tarifas.
+                    </p>
+                    <div class="row section-padding">
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
+                                <i class="fa fa-barcode"></i>&nbsp;&nbsp;Tarifas y Reserva
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
+                <div class="wp4">
+                    <p><strong>Horcajo de Santiago</strong></p>
+
+                    <h5><a href="https://laalvardana.es/" target="_blank" rel="noopener noreferrer">Casa Rural La Alvardana</a></h5>
+                    <p>Casa Rural ubicada en el centro de Horcajo de Santiago.<br>
+                        Dispone de 2 plantas y está enfocada a hospedar a grupos grandes.<br><br>
+                        Número mínimo de ocupantes en planta "Alvardana Baja": 6<br>
+                        Número mínimo de ocupantes en planta "Alvardana Alta": 9<br>
+                        Número mínimo de ocupantes en Casa: 15
+                    </p>
+                    <div class="row section-padding">
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <a class="btn btn-accent btn-small" href="https://laalvardana.es/tarifas-y-disponibilidad/" target="_blank" rel="noopener noreferrer">
+                                <i class="fa fa-barcode"></i>&nbsp;&nbsp;Tarifas y Reserva
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="wp6">
+                    <h5><a href="https://casaruralelalmez.com/" target="_blank" rel="noopener noreferrer">Casa Rural El Almez</a></h5>
+                    <p>La vivienda El Almez se encuentra integrada por dos casas rurales (Almez I y ALmez II) que se pueden alquilar en conjunto o de forma separada. <br>
+                        Cada casa cuenta con su propia entrada y salida independiente, cuentan con sus propios espacios pero comparten la piscina, el porche y el patio de Almez.<br><br>
+                        Almez I: Capacidad para 6 personas<br>
+                        Almez II: Capacidad para 11 personas<br>
+                        Alojamiento Entero: Capacidad para 17 personas
+                    </p>
+                    <div class="row section-padding">
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <a class="btn btn-accent btn-small" href="https://casaruralelalmez.com/tarifas/" target="_blank" rel="noopener noreferrer">
+                                <i class="fa fa-barcode"></i>&nbsp;&nbsp;Tarifas y Reserva
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dc-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <div class="text-center map-image">
+                        <img src="img/Ansares.png" style="max-width:40%; height:auto;">
+                    </div>
+                    <div class="text-center">
+                        <h5>PROPUESTA PRESTACIÓN SERVICIOS BODAS</h5>
+                        <strong>PRECIOS EN RÉGIMEN DE SÓLO ALOJAMIENTO / IVA INCLUIDO</strong>
+                    </div>
+                    <p>
+                        <ul class="listaprecios">
+                            <li>Habitación DOBLE ESTÁNDAR: 89 €</li>
+                            <li>Habitación SUPERIOR DOBLE: 121 €</li>
+                            <li>Habitación SUPERIOR TRIPLE (cama supletoria) : 141 €</li>
+                            <li>Habitación SUPERIOR CUÁDRUPLE (2 camas supletorias) : 166 €</li>
+                            <li>Habitación SUITE DOBLE: 141 €</li>
+                            <li>Habitación SUITE TRIPLE (cama supletoria): 176 €</li>
+                            <li>Habitación SUITE CUADRUPLE (2 camas supletorias): 201 €</li>
+                        </ul>
+                    </p>
+                    <div class="text-center">
+                        <h5>RESERVAS</h5>
+                        <p>Dirigir sus reservas al mail: <a href="mailto:reservas@ansareshotel.com?subject=BODA Jorge Carramiñana y Marta Garrido">reservas@ansareshotel.com</a> indicando en el asunto
+                            "BODA+NOMBRE NOVIOS" o llamando a los números de teléfono<br> <a href="tel:+34969182993">969 18 29 93</a> / <a href="tel:+34606761004">606 76 10 04</a></p>
+                    </div>   
+                    <div class="text-center">
+                        <h5>POLÍTICA DE CANCELACIÓN</h5>
+                        <strong>Sin gastos hasta 7 dias antes de la fecha de entrada.<br>
+                            Cancelaciones dentro de los 7 días previos a la entrada: 1 noche de gastos</strong>
+                    </div> 
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</section>
+
+<section class="rsvp text-center" id="rsvp">
+
+    <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <div class="section-padding">
+                        <h3>¡Muchas Gracias!</h3>
+                        <p>Nos alegramos de poder contar contigo en este gran día</p>
+                        <div id="add-to-cal"></div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h3>¿A qué estas esperando?</h3>
+                <p>Agradeceríamos que nos confirméis vuestra asistencia antes del 1 de Agosto</p>
+                <form id="rsvp-form" class="rsvp-form"
+                      action=""
+                      method="POST">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-user"></i><input name="Nombre" class=""
+                                                                 placeholder="Nombre Completo"
+                                                                 required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-envelope"></i><input type="email" name="Email" class=""
+                                                                     placeholder="E-mail"
+                                                                     required=""
+                                                                     autocomplete="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-exclamation-circle"></i>
+                                <div class="radio-options">
+                                    <label class="radio-label"><input type="radio" name="Asistencia" value="Sí" required> Asistiré</label>
+                                    <label class="radio-label"><input type="radio" name="Asistencia" value="No" required> No asistiré</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-bus"></i>
+                                <select name="Transporte" class="form-select" required>
+                                    <option value="">Transporte</option>
+                                    <option value="Autobús">Autobús</option>
+                                    <option value="Vehículo propio">Vehículo propio</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-ambulance"></i>
+                                <select name="Alergias" class="form-select" required>
+                                    <option value="">Alergias o intolerancias</option>
+                                    <option value="Gluten">Gluten</option>
+                                    <option value="Lactosa">Lactosa</option>
+                                    <option value="Frutos Secos">Frutos Secos</option>
+                                    <option value="Marisco">Marisco</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-input-group">
+                                <i class="fa fa-cutlery"></i>
+                                <select name="Dieta Específica" class="form-select" required>
+                                    <option value="">Dieta Específica</option>
+                                    <option value="Menú Vegetariano">Menú Vegetariano</option>
+                                    <option value="Menú Vegano">Menú Vegano</option>
+                                    <option value="Menú infantil">Menú infantil</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-input-group">
+                                <i class="fa fa-key"></i>
+                                <input type="number" name="invite_code" id="invite_code" class="" min="0" placeholder="Código de Invitación" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="alert-wrapper"></div>
+                    </div>
+                    <button class="btn-fill rsvp-btn">
+                        Enviar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contactdetails">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="header">CONTACTO</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center content">
+                <p>Escríbenos y/o llámanos para cualquier cosa que necesites:</p>
+                <p>Jorge 📱 <a href="tel:+34662505403">662 505 403</a> 📧 <a href="mailto:jorge.carra90@gmail.com?subject=Consulta acerca de la BODA">jorge.carra90@gmail.com</a> 💬 <a href="https://wa.me/34662505403" target="_blank" style="color: #25D366;">WhatsApp</a></p>
+                <p>Marta 📱 <a href="tel:+34660918565">660 918 565</a> 📧 <a href="mailto:marta8.gg@gmail.com?subject=Consulta acerca de la BODA">marta8.gg@gmail.com</a> 💬 <a href="https://wa.me/34660918565" target="_blank" style="color: #25D366;">WhatsApp</a></p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center content">
+                <span class="to-top-wrapper"><a href="#top" class="to-top"><i class="fa fa-angle-up"></i></a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/vendor/jquery-1.11.2.min.js" onerror="loadJsFromCDN('jquery.js')"></script>
+<script src="node_modules/waypoints/lib/jquery.waypoints.min.js" onerror="loadJsFromCDN('waypoints.js')"></script>
+<script src="js/jquery.fancybox.pack.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+<script src="js/vendor/ouical.js"></script>
+<script src="js/scripts.min.js"></script>
+
+<!-- Google Analytics -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-46465113-4', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
