@@ -14,8 +14,8 @@ A beautiful, feature rich, device friendly wedding website.
    data.
 
 # Getting Started
-1. `$ git clone https://github.com/jcarrami/boda.git` - clone this project to your computer
-2. `$ cd wedding-website` - go inside the project directory
+1. `$ git clone https://github.com/jcarrami/bodacarramarta.git` - clone this project to your computer
+2. `$ cd bodacarramarta` - go inside the project directory
 3. `$ npm install` - install dependencies
 4. `$ gulp` - compile sass to css, minify js, etc.
 5. That's it, open `index.html` file on your browser by just double-clicking on it.
