@@ -500,6 +500,14 @@
         position: relative;
         top: 0px;
     }
+    .rsvp .rsvp-form .form-input-group select,
+    .rsvp .rsvp-form .form-input-group .radio-options label {
+        padding-left: 48px; /* Reduce el padding en dispositivos más pequeños */
+    }
+
+    .rsvp .rsvp-form .form-input-group i {
+        margin-left: 10px; /* Ajusta la posición de los iconos si es necesario */
+    }
 }
 
 @media screen and (max-width: 640px) {
