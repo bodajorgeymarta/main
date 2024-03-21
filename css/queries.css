@@ -504,6 +504,12 @@
         .rsvp .rsvp-form .form-input-group select[name="Alergias"],
         .rsvp .rsvp-form .form-input-group select[name="Dieta Específica"] {
             padding-left: 108px; /* Ajusta este valor según sea necesario */
+            margin-left: 108px;
+        }
+    .rsvp .rsvp-form .radio-label {
+            display: inline-block; /* O 'inline-flex' si prefieres */
+            min-width: 100px; /* Ajusta según la necesidad */
+            margin-right: 5px; /* Ajusta según la necesidad */
         }
     .rsvp .rsvp-form .radio-label input[type="radio"] {
             width: 20px; /* Ajusta el ancho según sea necesario */
@@ -511,6 +517,7 @@
             margin-top: 0; /* Ajusta el margen superior si es necesario */
             vertical-align: middle;
         }
+    
 
 }
 
