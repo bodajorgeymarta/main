@@ -500,9 +500,15 @@
         position: relative;
         top: 0px;
     }
-    .rsvp .rsvp-form .form-input-group select {
-        padding-left: 108px; /* Reduce el padding en dispositivos más pequeños */
+    .rsvp .rsvp-form .form-input-group select,
+        .rsvp .rsvp-form .form-input-group input {
+            padding-left: 108px; /* Ajusta este valor como sea necesario para alinear el texto correctamente */
     }
+    .rsvp .rsvp-form .radio-label input[type="radio"] {
+            -webkit-appearance: radio; /* Para Safari */
+            -moz-appearance: radio; /* Para Firefox */
+            appearance: radio; /* Para el resto de navegadores */
+        }
 
 }
 
