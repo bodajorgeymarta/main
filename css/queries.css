@@ -500,8 +500,8 @@
         position: relative;
         top: 0px;
     }
-    .rsvp .rsvp-form .form-input-group .form-select {
-        padding-left: 65px; /* Reduce el padding en dispositivos más pequeños */
+    .rsvp .rsvp-form .form-input-group select {
+        padding-left: 108px; /* Reduce el padding en dispositivos más pequeños */
     }
 
 }
