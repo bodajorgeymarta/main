@@ -1039,7 +1039,7 @@ header .member-actions {
 .rsvp .rsvp-form .form-input-group i.fa-cutlery,
 .rsvp .rsvp-form .form-input-group i.fa-bus,
 .rsvp .rsvp-form .form-input-group i.fa-exclamation-circle,
-.rsvp .rsvp-form .form-input-group i.fa-key {
+.rsvp .rsvp-form .form-input-group .fa-key {
     font-size: 14px;
     position: absolute;
     top: 50%;
@@ -1047,6 +1047,18 @@ header .member-actions {
     margin-left: 20px;
 }
 
+.rsvp .rsvp-form .form-input-group .form-select {
+    padding-left: 65px;
+    width: 100%;
+    height: 100%;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: none;
+    background-color: white; /* Puedes cambiarlo por el color de fondo que necesites */
+    font-size: 14px; /* Ajusta el tamaño de la letra según necesites */
+    color: #bcc1c3; /* Ajusta el color del texto según necesites */
+}
 
 .rsvp .rsvp-form .form-input-group .radio-options {
     display: flex;
@@ -1066,8 +1078,7 @@ header .member-actions {
 }
 
 
-.rsvp .rsvp-form .form-input-group input,
-.rsvp .rsvp-form .form-input-group select {
+.rsvp .rsvp-form .form-input-group input {
     padding-left: 68px;
     width: 100%;
     height: 100%;
@@ -1077,26 +1088,21 @@ header .member-actions {
     border: none;
 }
 
-.rsvp .rsvp-form .form-input-group input::-webkit-input-placeholder,
-.rsvp .rsvp-form .form-input-group select::-webkit-input-placeholder {
+.rsvp .rsvp-form .form-input-group input::-webkit-input-placeholder {
     color: #bcc1c3;
 }
 
-.rsvp .rsvp-form .form-input-group input:-moz-placeholder,
-.rsvp .rsvp-form .form-input-group select:-moz-placeholder {
+.rsvp .rsvp-form .form-input-group input:-moz-placeholder {
     color: #bcc1c3;
 }
 
-.rsvp .rsvp-form .form-input-group input::-moz-placeholder,
-.rsvp .rsvp-form .form-input-group select::-moz-placeholder {
+.rsvp .rsvp-form .form-input-group input::-moz-placeholder {
     color: #bcc1c3;
 }
 
-.rsvp .rsvp-form .form-input-group input:-ms-input-placeholder,
-.rsvp .rsvp-form .form-input-group select:-ms-input-placeholder {
+.rsvp .rsvp-form .form-input-group input:-ms-input-placeholder {
     color: #bcc1c3;
 }
-
 
 footer .content {
     border-top: 1px solid #e6e9ea;
