@@ -503,7 +503,7 @@
     .rsvp .rsvp-form .form-input-group select[name="Transporte"],
         .rsvp .rsvp-form .form-input-group select[name="Alergias"],
         .rsvp .rsvp-form .form-input-group select[name="Dieta Específica"] {
-            margin-left: 64px;
+            margin-left: 60px;
         }
     .rsvp .rsvp-form .radio-label {
             display: inline-block; /* O 'inline-flex' si prefieres */
