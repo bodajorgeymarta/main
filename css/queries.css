@@ -500,14 +500,16 @@
         position: relative;
         top: 0px;
     }
-    .rsvp .rsvp-form .form-input-group select,
-        .rsvp .rsvp-form .form-input-group input {
-            padding-left: 108px; /* Ajusta este valor como sea necesario para alinear el texto correctamente */
-    }
+    .rsvp .rsvp-form .form-input-group select[name="Transporte"],
+        .rsvp .rsvp-form .form-input-group select[name="Alergias"],
+        .rsvp .rsvp-form .form-input-group select[name="Dieta Específica"] {
+            padding-left: 108px; /* Ajusta este valor según sea necesario */
+        }
     .rsvp .rsvp-form .radio-label input[type="radio"] {
-            -webkit-appearance: radio; /* Para Safari */
-            -moz-appearance: radio; /* Para Firefox */
-            appearance: radio; /* Para el resto de navegadores */
+            width: 20px; /* Ajusta el ancho según sea necesario */
+            height: 20px; /* Ajusta la altura según sea necesario */
+            margin-top: 0; /* Ajusta el margen superior si es necesario */
+            vertical-align: middle;
         }
 
 }
