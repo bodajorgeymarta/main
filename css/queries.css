@@ -504,7 +504,7 @@
         .rsvp .rsvp-form .form-input-group select[name="Alergias"],
         .rsvp .rsvp-form .form-input-group select[name="Dieta Específica"] {
             padding-left: 108px; /* Ajusta este valor según sea necesario */
-            margin-left: 108px;
+            margin-left: 68px;
         }
     .rsvp .rsvp-form .radio-label {
             display: inline-block; /* O 'inline-flex' si prefieres */
