@@ -1233,7 +1233,7 @@ body.modal-open {
     text-align: left;
     margin: 20px auto;
     background: #ffffff;
-    width: 80%;
+    width: 100%;
     max-width: 500px;
 }
 
@@ -1290,4 +1290,8 @@ body.modal-open {
     display: block;
     margin: 0 auto 20px;
     width: 170px;
+}
+
+#gift .btn {
+    margin-top: -40px; /* Ajusta este valor según sea necesario */
 }
