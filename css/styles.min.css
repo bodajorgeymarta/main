@@ -1295,3 +1295,11 @@ body.modal-open {
 #gift .btn {
     margin-top: -40px; /* Ajusta este valor según sea necesario */
 }
+
+#rsvp {
+    margin-bottom: -100px; /* Ajusta este valor según sea necesario */
+}
+
+#map {
+    margin-bottom: -150px; /* Ajusta este valor según sea necesario */
+}
