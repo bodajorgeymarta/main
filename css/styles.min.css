@@ -1227,3 +1227,69 @@ body.modal-open {
     list-style-type: circle; /* Añade círculos a los elementos de la lista */
     margin-left: 18px;
   }
+
+.gift-card {
+    border: 2px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    margin: 20px auto;
+    background: #ffffff;
+    width: 80%;
+    max-width: 500px;
+}
+
+.gift-card p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copy-btn {
+    padding: 5px 10px;
+    margin-left: 10px;
+    background-color: #e8ca6f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #d3b56a;
+    color: #fff;
+}
+
+.bizum-details .bizum-button-wrapper {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.bizum-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e8ca6f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.bizum-link:hover {
+    background-color: #d3b56a;
+    color: #fff;
+}
+
+.bizum-logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 150px;
+}
+
+.transfer-logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 170px;
+}
