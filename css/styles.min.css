@@ -1229,8 +1229,6 @@ body.modal-open {
   }
 
 .gift-card {
-    border: 2px solid #dcdcdc;
-    border-radius: 10px;
     padding: 20px;
     text-align: left;
     margin: 20px auto;
