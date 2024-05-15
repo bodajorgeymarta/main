@@ -295,12 +295,16 @@
                         <div style="padding: 5px; margin-top: 30px;">
                             <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Mostrar Mapa</a>
                         </div>
+                        <div style="padding: 5px; margin-top: 10px;">
+                            <a class="btn btn-accent btn-small" id="btn-open-in-maps" href="geo:39.84230240924366,-2.9970405711642836?q=Iglesia+Parroquial+Inmaculada+Concepción"><i class="fa fa-map"></i>&nbsp;&nbsp;Abrir en Google Maps</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section id="map2" class="section-padding">
     <div class="text-center">
@@ -316,7 +320,7 @@
                         <i class="fa fa-info-circle"></i>&nbsp;&nbsp; Mostrar info
                     </div>
                 </div>
-                <<div id="map-content2" class="pointer-events-auto">
+                <div id="map-content2" class="pointer-events-auto">
                     <div class="row map-content2-row">
                         <div class="col-xs-12 col-md-6 map-text">
                             <h5>
@@ -334,6 +338,9 @@
                     <div class="row text-center">
                         <div style="padding: 5px; margin-top: 30px;">
                             <a class="btn btn-accent btn-small" id="btn-show-map2"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Mostrar Mapa</a>
+                        </div>
+                        <div style="padding: 5px; margin-top: 10px;">
+                            <a class="btn btn-accent btn-small" id="btn-open-in-maps2" href="geo:40.00630759578105,-3.01897167403222?q=Essentia+Restaurante"><i class="fa fa-map"></i>&nbsp;&nbsp;Abrir en Google Maps</a>
                         </div>
                     </div>
                 </div>
@@ -563,6 +570,38 @@
     </div>
 </section>
 
+<section class="events section-padding" id="gift">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="header">Regalo</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="wp4">
+                    <p>Estamos muy emocionados por compartir este día tan especial con todos vosotros. Sin duda <strong>vuestra presencia es EL MEJOR REGALO</strong> que podríamos desear, pero si además de vuestra compañía queréis contribuir con un regalo material, os dejamos por aquí nuestras opciones:</p>
+                    
+                    <p><strong>Podéis hacer una Transferencia a la siguiente cuenta:</strong></p>
+                    <div class="gift-card bank-details">
+                        <img src="img/Transferencia.png" alt="Transferencia" class="transfer-logo">
+                        <p><strong>Titular:</strong> <span id="account-holder">Jorge Carramiñana / Marta Garrido</span> <button class="copy-btn" onclick="copyText('account-holder')">Copiar</button></p>
+                        <p><strong>Cuenta:</strong> <span id="account-number">ES88 0073 0100 5207 4220 7374</span> <button class="copy-btn" onclick="copyText('account-number')">Copiar</button></p>
+                        <p><strong>SWIFT/BIC:</strong> <span id="swift-code">OPENESMM</span> <button class="copy-btn" onclick="copyText('swift-code')">Copiar</button></p>
+                    </div>
+
+                    <p><strong>También podéis hacer un Bizum al siguiente número:</strong></p>
+                    <div class="gift-card bizum-details">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Bizum.svg" alt="Bizum" class="bizum-logo">
+                        <p><strong>Teléfono:</strong> <span id="bizum-number">663 506 169</span> <button class="copy-btn" onclick="copyText('bizum-number')">Copiar</button></p>
+                        <p class="bizum-button-wrapper"><a href="contact.vcf" class="bizum-link" download="contact.vcf">Guardar Contacto</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
 <section id="contactdetails">
     <div class="container">
         <div class="row">
@@ -614,6 +653,18 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-46465113-4', 'auto');
     ga('send', 'pageview');
+</script>
+<script>
+    function copyText(elementId) {
+        var copyText = document.getElementById(elementId).innerText;
+        var textArea = document.createElement("textarea");
+        textArea.value = copyText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        alert("Texto copiado: " + copyText);
+    }
 </script>
 </body>
 </html>
