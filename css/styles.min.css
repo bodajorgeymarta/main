@@ -1302,9 +1302,11 @@ body.modal-open {
 
 #map {
     margin-bottom: -100px; /* Ajusta este valor según sea necesario */
-    margin-top: -100px;
+    margin-top: -40px;
 }
 
 #map2 {
-    margin-bottom: -200px; /* Ajusta este valor según sea necesario */
+    margin-bottom: -100px; /* Ajusta este valor según sea necesario */
 }
+
+
