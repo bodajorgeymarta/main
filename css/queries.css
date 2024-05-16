@@ -665,4 +665,11 @@
     .form-input-group select {
         width: calc(100% - 40px); /* Adjust width considering icon size */
     }
+    #rsvp .radio-options {
+        justify-content: space-around; /* Asegura que los elementos se distribuyan uniformemente */
+    }
+
+    #rsvp .radio-options label {
+        margin-right: 2px; /* Ajusta este valor para pantallas pequeñas */
+    }
 }
