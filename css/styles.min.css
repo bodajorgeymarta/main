@@ -1074,7 +1074,7 @@ header .member-actions {
 }
 
 .rsvp .rsvp-form .form-input-group .radio-label input[type="radio"] {
-    margin-right: 3px; /* Espacio entre el radio y el texto */
+    margin-right: 10px; /* Espacio entre el radio y el texto */
 }
 
 
