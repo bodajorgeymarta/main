@@ -714,30 +714,24 @@
 </script>
 <script>
     const clientId = '909dac1a57f84839bf029a975a8683a0';
+    const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
     const playlistId = '6zGBP73Slgww0nQVPfeuBR';
-
     let token;
 
-    // Obtener el token de acceso
-    async function getToken() {
-        const code = new URLSearchParams(window.location.search).get('code');
-        if (!code) {
-            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
-            window.location.href = authUrl;
-        } else {
-            const result = await fetch('https://accounts.spotify.com/api/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-                },
-                body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
-            });
+    // Obtener el token de acceso usando el Authorization Code Flow
+    async function getToken(code) {
+        const result = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
+            },
+            body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
+        });
 
-            const data = await result.json();
-            token = data.access_token;
-        }
+        const data = await result.json();
+        token = data.access_token;
     }
 
     // Buscar canción
@@ -760,10 +754,20 @@
             const trackElement = document.createElement('div');
             trackElement.innerHTML = `
                 <p>${track.name} by ${track.artists[0].name}</p>
-                <button onclick="addToPlaylist('${track.uri}')">Añadir a la Lista</button>
+                <button onclick="authorizeAndAddToPlaylist('${track.uri}')">Añadir a la Lista</button>
             `;
             results.appendChild(trackElement);
         });
+    }
+
+    // Autorizar y añadir canción a la lista de reproducción
+    function authorizeAndAddToPlaylist(trackUri) {
+        if (!token) {
+            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
+            window.location.href = authUrl;
+        } else {
+            addToPlaylist(trackUri);
+        }
     }
 
     // Añadir canción a la lista de reproducción
@@ -780,8 +784,22 @@
         }
     }
 
-    // Obtener el token de acceso al cargar la página
-    window.onload = () => getToken();
+    // Manejar el callback de la autorización
+    window.addEventListener('message', async (event) => {
+        if (event.data.type === 'spotify-auth') {
+            await getToken(event.data.code);
+            alert('Autorización completada. Intenta añadir la canción nuevamente.');
+        }
+    });
+
+    // Comprobar si el código de autorización está presente en la URL
+    window.onload = () => {
+        const code = new URLSearchParams(window.location.search).get('code');
+        if (code) {
+            window.opener.postMessage({ type: 'spotify-auth', code: code }, '*');
+            window.close();
+        }
+    };
 </script>
 </body>
 </html>
