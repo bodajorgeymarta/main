@@ -787,13 +787,15 @@
     // Añadir canción a la lista de reproducción
     async function addToPlaylist(trackUri) {
         const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
-			method: 'POST',
+            method: 'POST',
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
         });
 
-        if (result.status === 201) {
+        if (result.ok) { // Cambiar la condición para verificar si la respuesta es exitosa
             alert('Canción añadida a la lista de reproducción');
         } else {
+            const errorData = await result.json();
+            console.error('Error al añadir la canción:', errorData);
             alert('Hubo un error al añadir la canción');
         }
     }
