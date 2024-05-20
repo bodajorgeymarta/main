@@ -722,6 +722,7 @@ let token = localStorage.getItem('spotifyToken');
 let tokenExpirationTime = localStorage.getItem('spotifyTokenExpirationTime');
 let authWindow;
 
+// Obtener el token de acceso usando el Authorization Code Flow
 async function getToken(code) {
     const result = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -746,6 +747,7 @@ async function getToken(code) {
     }
 }
 
+// Obtener el token de acceso con Client Credentials Flow para búsqueda
 async function getClientToken() {
     const result = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -763,10 +765,12 @@ async function getClientToken() {
     localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
 }
 
+// Verificar si el token ha expirado
 function isTokenExpired() {
     return !token || new Date().getTime() > tokenExpirationTime;
 }
 
+// Buscar canción
 async function searchSong() {
     if (isTokenExpired()) {
         await getClientToken();
@@ -781,6 +785,7 @@ async function searchSong() {
     displayResults(data.tracks.items);
 }
 
+// Mostrar resultados de búsqueda
 function displayResults(tracks) {
     const results = document.getElementById('search-results');
     results.innerHTML = '';
@@ -794,6 +799,7 @@ function displayResults(tracks) {
     });
 }
 
+// Autorizar y añadir canción a la lista de reproducción
 async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
     if (isTokenExpired()) {
         const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
@@ -819,6 +825,7 @@ async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
     }
 }
 
+// Manejar error de autenticación
 async function handleAuthError() {
     console.log('Token expirado, obteniendo un nuevo token...');
     const authCode = localStorage.getItem('spotifyAuthCode');
@@ -829,6 +836,7 @@ async function handleAuthError() {
     }
 }
 
+// Verificar si la canción ya está en la lista de reproducción
 async function checkIfTrackExists(trackUri) {
     const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         method: 'GET',
@@ -839,6 +847,7 @@ async function checkIfTrackExists(trackUri) {
     return data.items.some(item => item.track.uri === trackUri);
 }
 
+// Añadir canción a la lista de reproducción
 async function addToPlaylist(trackUri) {
     const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
         method: 'POST',
@@ -854,11 +863,13 @@ async function addToPlaylist(trackUri) {
     }
 }
 
+// Limpiar búsqueda
 function clearSearch() {
     document.getElementById('song-search').value = '';
     document.getElementById('search-results').innerHTML = '';
 }
 
+// Sugerir canción
 function suggestSong() {
     const suggestedSong = document.getElementById('suggested-song').value;
     const suggestedArtist = document.getElementById('suggested-artist').value;
@@ -898,15 +909,17 @@ function suggestSong() {
     }
 }
 
+// Manejar el callback de la autorización
 window.addEventListener('message', async (event) => {
     if (event.data.type === 'spotify-auth') {
         console.log('Código de autenticación recibido:', event.data.code);
         localStorage.setItem('spotifyAuthCode', event.data.code); // Guardar el código de autorización
         await getToken(event.data.code);
-		alert('Autorización completada. Intenta añadir la canción nuevamente.');
+        alert('Autorización completada. Intenta añadir la canción nuevamente.');
     }
 });
 
+// Comprobar si el código de autorización está presente en la URL
 window.onload = () => {
     const code = new URLSearchParams(window.location.search).get('code');
     if (code) {
