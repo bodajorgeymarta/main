@@ -790,7 +790,7 @@ function displayResults(tracks) {
             <p><img src="img/Spotify.png" alt="Spotify" width="20" height="20">${track.name} by ${track.artists[0].name}</p>
             <button onclick="authorizeAndAddToPlaylist('${track.uri}', '${track.name}', '${track.artists[0].name}')">Añadir a la Lista</button>
         `;
-		results.appendChild(trackElement);
+        results.appendChild(trackElement);
     });
 }
 
@@ -800,7 +800,13 @@ async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
         authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
     } else {
         try {
-            await addToPlaylist(trackUri);
+            const exists = await checkIfTrackExists(trackUri);
+            if (!exists) {
+                await addToPlaylist(trackUri);
+            } else {
+                alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
+                clearSearch();
+            }
         } catch (error) {
             if (error.status === 401) {
                 await handleAuthError();
@@ -815,7 +821,12 @@ async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
 
 async function handleAuthError() {
     console.log('Token expirado, obteniendo un nuevo token...');
-    await getToken(localStorage.getItem('spotifyAuthCode')); // Reemplazar con la lógica adecuada para obtener el código de autorización
+    const authCode = localStorage.getItem('spotifyAuthCode');
+    if (authCode) {
+        await getToken(authCode);
+    } else {
+        alert('Por favor, autentifícate para continuar.');
+    }
 }
 
 async function checkIfTrackExists(trackUri) {
@@ -891,8 +902,8 @@ window.addEventListener('message', async (event) => {
     if (event.data.type === 'spotify-auth') {
         console.log('Código de autenticación recibido:', event.data.code);
         localStorage.setItem('spotifyAuthCode', event.data.code); // Guardar el código de autorización
-		await getToken(event.data.code);
-        alert('Autorización completada. Intenta añadir la canción nuevamente.');
+        await getToken(event.data.code);
+		alert('Autorización completada. Intenta añadir la canción nuevamente.');
     }
 });
 
