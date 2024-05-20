@@ -1328,6 +1328,13 @@ body.modal-open {
     .search-results div p {
         margin: 0;
         padding-right: 20px;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-results div p img {
+        margin-right: 10px;
     }
 
     .search-results div button {
