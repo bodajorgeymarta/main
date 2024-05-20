@@ -1309,14 +1309,4 @@ body.modal-open {
     margin-bottom: -100px; /* Ajusta este valor según sea necesario */
 }
 
-#rsvp .radio-options label {
-    flex: 1;
-    text-align: center;
-    margin-right: 1px; /* Ajusta este valor según sea necesario */
-}
-
-#rsvp .radio-options input[type="radio"] {
-    margin-right: 1px; /* Reduce el margen derecho del radio button */
-}
-
 
