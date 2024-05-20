@@ -774,7 +774,7 @@
     function displayResults(tracks) {
         const results = document.getElementById('search-results');
         results.innerHTML = '';
-        tracks.forEach(track => {
+        tracks.slice(0, 5).forEach(track => {
             const trackElement = document.createElement('div');
             trackElement.innerHTML = `
                 <p><img src="img/Spotify.png" alt="Spotify" width="20" height="20">${track.name} by ${track.artists[0].name}</p>
