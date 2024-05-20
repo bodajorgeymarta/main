@@ -731,8 +731,14 @@
         });
 
         const data = await result.json();
-        token = data.access_token;
-        localStorage.setItem('spotifyToken', token);
+        if (data.access_token) {
+            token = data.access_token;
+            localStorage.setItem('spotifyToken', token);
+            console.log('Token obtenido y guardado en localStorage.');
+        } else {
+            console.error('Error obteniendo el token:', data);
+            alert('Error obteniendo el token de acceso.');
+        }
     }
 
     // Obtener el token de acceso con Client Credentials Flow para búsqueda
@@ -806,6 +812,7 @@
     // Manejar el callback de la autorización
     window.addEventListener('message', async (event) => {
         if (event.data.type === 'spotify-auth') {
+            console.log('Código de autenticación recibido:', event.data.code);
             await getToken(event.data.code);
             alert('Autorización completada. Intenta añadir la canción nuevamente.');
         }
@@ -815,8 +822,13 @@
     window.onload = () => {
         const code = new URLSearchParams(window.location.search).get('code');
         if (code) {
-            window.opener.postMessage({ type: 'spotify-auth', code: code }, '*');
-            window.close();
+            if (window.opener) {
+                window.opener.postMessage({ type: 'spotify-auth', code: code }, '*');
+                window.close();
+            } else {
+                console.error('No se pudo comunicar con la ventana principal.');
+                alert('No se pudo completar la autenticación. Por favor, inténtalo de nuevo.');
+            }
         }
     };
 </script>
