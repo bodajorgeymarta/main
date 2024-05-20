@@ -716,7 +716,7 @@
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
-            body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
+            body: grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}
         });
 
         const data = await result.json();
@@ -768,20 +768,37 @@
             const trackElement = document.createElement('div');
             trackElement.innerHTML = `
                 <p>${track.name} by ${track.artists[0].name}</p>
-                <button onclick="authorizeAndAddToPlaylist('${track.uri}')">Añadir a la Lista</button>
+                <button onclick="authorizeAndAddToPlaylist('${track.uri}', '${track.name}', '${track.artists[0].name}')">Añadir a la Lista</button>
             `;
             results.appendChild(trackElement);
         });
     }
 
     // Autorizar y añadir canción a la lista de reproducción
-    async function authorizeAndAddToPlaylist(trackUri) {
+    async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
         if (!localStorage.getItem('spotifyToken')) {
-            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
+            const authUrl = https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public;
             authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
         } else {
-            await addToPlaylist(trackUri);
+            const exists = await checkIfTrackExists(trackUri);
+            if (!exists) {
+                await addToPlaylist(trackUri);
+            } else {
+                alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
+                clearSearch();
+            }
         }
+    }
+
+    // Verificar si la canción ya está en la lista de reproducción
+    async function checkIfTrackExists(trackUri) {
+        const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
+        });
+
+        const data = await result.json();
+        return data.items.some(item => item.track.uri === trackUri);
     }
 
     // Añadir canción a la lista de reproducción
@@ -793,11 +810,18 @@
 
         if (result.ok) { // Cambiar la condición para verificar si la respuesta es exitosa
             alert('Canción añadida a la lista de reproducción');
+            clearSearch();
         } else {
             const errorData = await result.json();
             console.error('Error al añadir la canción:', errorData);
             alert('Hubo un error al añadir la canción');
         }
+    }
+
+    // Limpiar búsqueda y resultados
+    function clearSearch() {
+        document.getElementById('song-search').value = '';
+        document.getElementById('search-results').innerHTML = '';
     }
 
     // Manejar el callback de la autorización
