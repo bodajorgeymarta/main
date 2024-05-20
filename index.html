@@ -736,7 +736,7 @@ async function getToken(code) {
     const data = await result.json();
     if (data.access_token) {
         token = data.access_token;
-        tokenExpirationTime = new Date().getTime() + 1800 * 1000; // Ajustar expiración a 30 minutos
+        tokenExpirationTime = new Date().getTime() + 3600 * 1000; // Ajustar expiración a 1 hora
         localStorage.setItem('spotifyToken', token);
         localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
         document.getElementById('is-authorized').value = 'true';
@@ -760,7 +760,7 @@ async function getClientToken() {
 
     const data = await result.json();
     token = data.access_token;
-    tokenExpirationTime = new Date().getTime() + 1800 * 1000; // Ajustar expiración a 30 minutos
+    tokenExpirationTime = new Date().getTime() + 3600 * 1000; // Ajustar expiración a 1 hora
     localStorage.setItem('spotifyToken', token);
     localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
 }
