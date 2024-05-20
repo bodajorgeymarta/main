@@ -717,7 +717,7 @@ const clientId = '909dac1a57f84839bf029a975a8683a0';
 const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
 const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
 const playlistId = '6zGBP73Slgww0nQVPfeuBR';
-const googleScriptURL = 'URL_DEL_SCRIPT_DE_GOOGLE_APPS'; // Reemplaza con la URL de tu script de Google Apps
+const googleScriptURL = 'https://script.google.com/macros/s/AKfycbxZXjCekiCqvAvOxw2vwD-iWUCJLG_XvdUYxy7AznwDlJRvdoUdLaNQYMuoP5FJzj7S/exec';
 let token = localStorage.getItem('spotifyToken');
 let tokenExpirationTime = localStorage.getItem('spotifyTokenExpirationTime');
 let authWindow;
@@ -735,7 +735,7 @@ async function getToken(code) {
     const data = await result.json();
     if (data.access_token) {
         token = data.access_token;
-        tokenExpirationTime = new Date().getTime() + 900 * 1000;
+        tokenExpirationTime = new Date().getTime() + 1800 * 1000; // Ajustar expiración a 30 minutos
         localStorage.setItem('spotifyToken', token);
         localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
         document.getElementById('is-authorized').value = 'true';
@@ -758,7 +758,7 @@ async function getClientToken() {
 
     const data = await result.json();
     token = data.access_token;
-    tokenExpirationTime = new Date().getTime() + 900 * 1000;
+    tokenExpirationTime = new Date().getTime() + 1800 * 1000; // Ajustar expiración a 30 minutos
     localStorage.setItem('spotifyToken', token);
     localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
 }
@@ -787,10 +787,10 @@ function displayResults(tracks) {
     tracks.slice(0, 5).forEach(track => {
         const trackElement = document.createElement('div');
         trackElement.innerHTML = `
-            <p><img src="images/spotify-icon.png" alt="Spotify" width="20" height="20">${track.name} by ${track.artists[0].name}</p>
+            <p><img src="img/Spotify.png" alt="Spotify" width="20" height="20">${track.name} by ${track.artists[0].name}</p>
             <button onclick="authorizeAndAddToPlaylist('${track.uri}', '${track.name}', '${track.artists[0].name}')">Añadir a la Lista</button>
         `;
-        results.appendChild(trackElement);
+		results.appendChild(trackElement);
     });
 }
 
@@ -799,14 +799,23 @@ async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
         const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
         authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
     } else {
-        const exists = await checkIfTrackExists(trackUri);
-        if (!exists) {
+        try {
             await addToPlaylist(trackUri);
-        } else {
-            alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
-			clearSearch();
+        } catch (error) {
+            if (error.status === 401) {
+                await handleAuthError();
+                await addToPlaylist(trackUri); // Reintentar después de renovar el token
+            } else {
+                console.error('Error al añadir la canción:', error);
+                alert('Hubo un error al añadir la canción');
+            }
         }
     }
+}
+
+async function handleAuthError() {
+    console.log('Token expirado, obteniendo un nuevo token...');
+    await getToken(localStorage.getItem('spotifyAuthCode')); // Reemplazar con la lógica adecuada para obtener el código de autorización
 }
 
 async function checkIfTrackExists(trackUri) {
@@ -830,8 +839,7 @@ async function addToPlaylist(trackUri) {
         clearSearch();
     } else {
         const errorData = await result.json();
-        console.error('Error al añadir la canción:', errorData);
-        alert('Hubo un error al añadir la canción');
+        throw errorData;
     }
 }
 
@@ -882,7 +890,8 @@ function suggestSong() {
 window.addEventListener('message', async (event) => {
     if (event.data.type === 'spotify-auth') {
         console.log('Código de autenticación recibido:', event.data.code);
-        await getToken(event.data.code);
+        localStorage.setItem('spotifyAuthCode', event.data.code); // Guardar el código de autorización
+		await getToken(event.data.code);
         alert('Autorización completada. Intenta añadir la canción nuevamente.');
     }
 });
