@@ -717,7 +717,7 @@
     const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
     const playlistId = '6zGBP73Slgww0nQVPfeuBR';
-    let token;
+    let token = localStorage.getItem('spotifyToken');
 
     // Obtener el token de acceso usando el Authorization Code Flow
     async function getToken(code) {
@@ -727,14 +727,15 @@
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
-            body: 'grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}'
+            body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
         });
 
         const data = await result.json();
         token = data.access_token;
+        localStorage.setItem('spotifyToken', token);
     }
 
-    // Obtener el token de acceso con Client Credentials Flow
+    // Obtener el token de acceso con Client Credentials Flow para búsqueda
     async function getClientToken() {
         const result = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
@@ -780,8 +781,8 @@
 
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackUri) {
-        if (!token) {
-            const authUrl = 'https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public';
+        if (!localStorage.getItem('spotifyToken')) {
+            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
             window.location.href = authUrl;
         } else {
             await addToPlaylist(trackUri);
@@ -792,7 +793,7 @@
     async function addToPlaylist(trackUri) {
         const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
             method: 'POST',
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
         });
 
         if (result.status === 201) {
