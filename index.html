@@ -717,7 +717,6 @@ const clientId = '909dac1a57f84839bf029a975a8683a0';
 const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
 const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
 const playlistId = '6zGBP73Slgww0nQVPfeuBR';
-const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz9aZ6NAlsb1mCEx3mrGDrNigbrCcOIfzUkCjTbkdpdYfKUm9fFT-hO9UYde11tqenu/exec';
 let token = localStorage.getItem('spotifyToken');
 let tokenExpirationTime = localStorage.getItem('spotifyTokenExpirationTime');
 let authWindow;
@@ -738,29 +737,11 @@ async function getToken(code) {
         tokenExpirationTime = new Date().getTime() + (data.expires_in - 60) * 1000; // Ajustar expiración restando 60 segundos de margen
         localStorage.setItem('spotifyToken', token);
         localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
-        document.getElementById('is-authorized').value = 'true';
         console.log('Token obtenido y guardado en localStorage.');
     } else {
         console.error('Error obteniendo el token:', data);
         alert('Error obteniendo el token de acceso.');
     }
-}
-
-async function getClientToken() {
-    const result = await fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-        },
-        body: 'grant_type=client_credentials'
-    });
-
-    const data = await result.json();
-    token = data.access_token;
-    tokenExpirationTime = new Date().getTime() + (data.expires_in - 60) * 1000; // Ajustar expiración restando 60 segundos de margen
-    localStorage.setItem('spotifyToken', token);
-    localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
 }
 
 function isTokenExpired() {
@@ -798,6 +779,13 @@ async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
     if (isTokenExpired()) {
         const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
         authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
+        window.addEventListener('message', async (event) => {
+            if (event.data.type === 'spotify-auth') {
+                console.log('Código de autenticación recibido:', event.data.code);
+                await getToken(event.data.code);
+                await addToPlaylist(trackUri); // Reintentar después de renovar el token
+            }
+        });
     } else {
         try {
             const exists = await checkIfTrackExists(trackUri);
@@ -822,11 +810,9 @@ async function handleAuthError(trackUri) {
     console.log('Token expirado, obteniendo un nuevo token...');
     const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
     authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
-
     window.addEventListener('message', async (event) => {
         if (event.data.type === 'spotify-auth') {
             console.log('Código de autenticación recibido:', event.data.code);
-            localStorage.setItem('spotifyAuthCode', event.data.code); // Guardar el código de autorización
             await getToken(event.data.code);
             await addToPlaylist(trackUri); // Reintentar después de renovar el token
         }
@@ -861,44 +847,6 @@ async function addToPlaylist(trackUri) {
 function clearSearch() {
     document.getElementById('song-search').value = '';
     document.getElementById('search-results').innerHTML = '';
-}
-
-function suggestSong() {
-    const suggestedSong = document.getElementById('suggested-song').value;
-    const suggestedArtist = document.getElementById('suggested-artist').value;
-    const isAuthorized = document.getElementById('is-authorized').value;
-    
-    if (suggestedSong && suggestedArtist) {
-        if (isAuthorized === 'false') {
-            fetch(googleScriptURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ song: suggestedSong, artist: suggestedArtist })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
-                    document.getElementById('suggested-song').value = '';
-                    document.getElementById('suggested-artist').value = '';
-                } else {
-                    alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-                }
-            })
-            .catch(error => {
-                console.error('Error al enviar la sugerencia:', error);
-                alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-            });
-        } else {
-            alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
-            document.getElementById('suggested-song').value = '';
-            document.getElementById('suggested-artist').value = '';
-        }
-    } else {
-        alert('Por favor, completa ambos campos antes de enviar tu sugerencia.');
-    }
 }
 
 window.addEventListener('message', async (event) => {
