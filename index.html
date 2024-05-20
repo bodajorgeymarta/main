@@ -781,7 +781,7 @@
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackUri) {
         if (!token) {
-            const authUrl = https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public;
+            const authUrl = 'https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public';
             window.location.href = authUrl;
         } else {
             await addToPlaylist(trackUri);
