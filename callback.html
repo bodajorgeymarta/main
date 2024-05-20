@@ -12,6 +12,12 @@
             window.opener.postMessage({ type: 'spotify-auth', code: code }, '*');
             window.close();
         } else {
+            if (!code) {
+                console.error('No se encontró ningún código de autorización en la URL.');
+            } 
+            if (!window.opener) {
+                console.error('No se pudo comunicar con la ventana principal.');
+            }
             alert('No se pudo completar la autenticación. Por favor, inténtalo de nuevo.');
         }
     </script>
