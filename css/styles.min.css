@@ -1309,4 +1309,38 @@ body.modal-open {
     margin-bottom: -100px; /* Ajusta este valor según sea necesario */
 }
 
+.section-padding {
+        padding: 60px 0;
+    }
 
+    .search-results div {
+        background-color: #1db954;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .search-results div p {
+        margin: 0;
+        padding-right: 20px;
+    }
+
+    .search-results div button {
+        background-color: white;
+        color: #1db954;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .search-results div button:hover {
+        background-color: #1db954;
+        color: white;
+        border: 1px solid white;
+    }
