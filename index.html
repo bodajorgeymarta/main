@@ -711,6 +711,7 @@
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
     const playlistId = '6zGBP73Slgww0nQVPfeuBR';
     let token = localStorage.getItem('spotifyToken');
+    let tokenExpirationTime = localStorage.getItem('spotifyTokenExpirationTime');
     let authWindow;
 
     // Obtener el token de acceso usando el Authorization Code Flow
@@ -721,13 +722,15 @@
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
-            body: 'grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}'
+            body: `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
         });
 
         const data = await result.json();
         if (data.access_token) {
             token = data.access_token;
+            tokenExpirationTime = new Date().getTime() + data.expires_in * 1000; // Calcula el tiempo de expiración en milisegundos
             localStorage.setItem('spotifyToken', token);
+            localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
             console.log('Token obtenido y guardado en localStorage.');
         } else {
             console.error('Error obteniendo el token:', data);
@@ -748,11 +751,19 @@
 
         const data = await result.json();
         token = data.access_token;
+        tokenExpirationTime = new Date().getTime() + data.expires_in * 1000; // Calcula el tiempo de expiración en milisegundos
+        localStorage.setItem('spotifyToken', token);
+        localStorage.setItem('spotifyTokenExpirationTime', tokenExpirationTime);
+    }
+
+    // Verificar si el token ha expirado
+    function isTokenExpired() {
+        return !token || new Date().getTime() > tokenExpirationTime;
     }
 
     // Buscar canción
     async function searchSong() {
-        if (!token) {
+        if (isTokenExpired()) {
             await getClientToken();
         }
         const query = document.getElementById('song-search').value;
@@ -781,8 +792,8 @@
 
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
-        if (!localStorage.getItem('spotifyToken')) {
-            const authUrl = 'https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public';
+        if (isTokenExpired()) {
+            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
             authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
         } else {
             const exists = await checkIfTrackExists(trackUri);
@@ -799,7 +810,7 @@
     async function checkIfTrackExists(trackUri) {
         const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'GET',
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
+            headers: { 'Authorization': 'Bearer ' + token }
         });
 
         const data = await result.json();
@@ -810,10 +821,10 @@
     async function addToPlaylist(trackUri) {
         const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
             method: 'POST',
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
+            headers: { 'Authorization': 'Bearer ' + token }
         });
 
-        if (result.ok) { // Cambiar la condición para verificar si la respuesta es exitosa
+        if (result.ok) {
             alert('Canción añadida a la lista de reproducción');
             clearSearch();
         } else {
