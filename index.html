@@ -562,6 +562,20 @@
     </div>
 </section>
 
+<section id="spotify" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="header">Añade tu Canción a la Lista de Reproducción</h3>
+                <p>Busca tu canción favorita y añádela a nuestra lista de reproducción de boda.</p>
+                <input type="text" id="song-search" placeholder="Busca una canción..." class="form-control">
+                <button id="search-button" class="btn btn-accent btn-small" onclick="searchSong()">Buscar</button>
+                <div id="search-results"></div>
+            </div>
+        </div>
+    </div>
+</section>
+	
 <section class="events section-padding" id="gift">
     <div class="container">
         <div class="row">
@@ -697,6 +711,70 @@
         textArea.remove();
         alert("Texto copiado: " + copyText);
     }
+</script>
+<script>
+    const clientId = '909dac1a57f84839bf029a975a8683a0';
+    const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
+    let token;
+
+    // Obtener el token de acceso
+    async function getToken() {
+        const result = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
+            },
+            body: 'grant_type=client_credentials'
+        });
+
+        const data = await result.json();
+        token = data.access_token;
+    }
+
+    // Buscar canción
+    async function searchSong() {
+        const query = document.getElementById('song-search').value;
+        const result = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        const data = await result.json();
+        displayResults(data.tracks.items);
+    }
+
+    // Mostrar resultados
+    function displayResults(tracks) {
+        const results = document.getElementById('search-results');
+        results.innerHTML = '';
+        tracks.forEach(track => {
+            const trackElement = document.createElement('div');
+            trackElement.innerHTML = `
+                <p>${track.name} by ${track.artists[0].name}</p>
+                <button onclick="addToPlaylist('${track.uri}')">Añadir a la Lista</button>
+            `;
+            results.appendChild(trackElement);
+        });
+    }
+
+    // Añadir canción a la lista de reproducción
+    async function addToPlaylist(trackUri) {
+        const playlistId = '6zGBP73Slgww0nQVPfeuBR';
+        const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        if (result.status === 201) {
+            alert('Canción añadida a la lista de reproducción');
+        } else {
+            alert('Hubo un error al añadir la canción');
+        }
+    }
+
+    // Obtener el token de acceso al cargar la página
+    window.onload = () => getToken();
 </script>
 </body>
 </html>
