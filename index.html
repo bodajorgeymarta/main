@@ -849,38 +849,33 @@
 	
     // Enviar sugerencia a Google Sheets
     function suggestSong() {
-        const suggestedSong = document.getElementById('suggested-song').value;
-        const suggestedArtist = document.getElementById('suggested-artist').value;
-        
-        if (suggestedSong && suggestedArtist) {
-            // Enviar sugerencia a Google Sheets
-            fetch(`https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec?callback=processResponse`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ song: suggestedSong, artist: suggestedArtist })
-                })
-                .then(response => response.json())
-                .then(data => {
-                if (data.result === 'success') {
-                    alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
-                    document.getElementById('suggested-song').value = '';
-                    document.getElementById('suggested-artist').value = '';
-                } else {
-                    alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-                }
-                })
-                .catch(error => {
-                console.error('Error al enviar la sugerencia:', error);
-                alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-                });
-
-        } else {
-            alert('Por favor, completa ambos campos antes de enviar tu sugerencia.');
-        }
-    }
-
+        var suggestedSong = document.getElementById('suggested-song').value;
+        var suggestedArtist = document.getElementById('suggested-artist').value;
+      
+        // Enviar los datos a Google Sheets utilizando AJAX
+        var xhr = new XMLHttpRequest();
+        var url = 'https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec';
+      
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Aquí puedes hacer algo si la solicitud fue exitosa
+            console.log('Datos enviados correctamente');
+          } else {
+            // Aquí puedes manejar errores si la solicitud falla
+            console.error('Error al enviar datos');
+          }
+        };
+      
+        var data = JSON.stringify({
+          suggestedSong: suggestedSong,
+          suggestedArtist: suggestedArtist
+        });
+      
+        xhr.send(data);
+      }
     // Manejar el callback de la autorización
     window.addEventListener('message', async (event) => {
         if (event.data.type === 'spotify-auth') {
