@@ -781,6 +781,7 @@
 
         const data = await result.json();
         displayResults(data.tracks.items);
+	localStorage.removeItem('spotifyToken'); // Eliminar el token después de completar la búsqueda
     }
 
     // Mostrar resultados
@@ -810,6 +811,7 @@
                 alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
                 clearSearch();
             }
+	    localStorage.removeItem('spotifyToken'); // Eliminar el token después de añadir la canción
         }
     }
 
