@@ -777,7 +777,8 @@
         const query = document.getElementById('song-search').value;
         const result = await fetch('https://api.spotify.com/v1/search?q=${query}&type=track', {
             method: 'GET',
-            headers: { 'Authorization': 'Bearer ' + token }
+            headers: { 'Authorization': 'Bearer ' + token },
+	    mode: 'no-cors'
         });
 
         const data = await result.json();
@@ -788,7 +789,7 @@
     function displayResults(tracks) {
         const results = document.getElementById('search-results');
         results.innerHTML = '';
-        tracks.forEach(track => {
+        tracks.slice(0, 5).forEach(track => {
             const trackElement = document.createElement('div');
             trackElement.innerHTML = `
                 <p>${track.name} by ${track.artists[0].name}</p>
