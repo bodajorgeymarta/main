@@ -847,6 +847,46 @@
         document.getElementById('song-search').value = '';
         document.getElementById('search-results').innerHTML = '';
     }
+	
+    // Enviar sugerencia a Google Sheets
+    function suggestSong() {
+        const suggestedSong = document.getElementById('suggested-song').value;
+        const suggestedArtist = document.getElementById('suggested-artist').value;
+        const isAuthorized = document.getElementById('is-authorized').value;
+        
+        if (suggestedSong && suggestedArtist) {
+            if (isAuthorized === 'false') {
+                // Enviar sugerencia a Google Sheets
+                fetch(`https://script.google.com/macros/s/AKfycbxZXjCekiCqvAvOxw2vwD-iWUCJLG_XvdUYxy7AznwDlJRvdoUdLaNQYMuoP5FJzj7S/exec`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ song: suggestedSong, artist: suggestedArtist })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
+                        document.getElementById('suggested-song').value = '';
+                        document.getElementById('suggested-artist').value = '';
+                    } else {
+                        alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al enviar la sugerencia:', error);
+                    alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
+                });
+            } else {
+                alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
+                document.getElementById('suggested-song').value = '';
+                document.getElementById('suggested-artist').value = '';
+            }
+        } else {
+            alert('Por favor, completa ambos campos antes de enviar tu sugerencia.');
+        }
+    }
 
     // Manejar el callback de la autorización
     window.addEventListener('message', async (event) => {
