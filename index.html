@@ -777,8 +777,7 @@
         const query = document.getElementById('song-search').value;
         const result = await fetch('https://api.spotify.com/v1/search?q=${query}&type=track', {
             method: 'GET',
-            headers: { 'Authorization': 'Bearer ' + token },
-	    mode: 'no-cors'
+            headers: { 'Authorization': 'Bearer ' + token }
         });
 
         const data = await result.json();
