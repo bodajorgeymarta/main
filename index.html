@@ -849,41 +849,18 @@
 	
     // Enviar sugerencia a Google Sheets
     function suggestSong() {
-        var suggestedSong = document.getElementById('suggested-song').value;
-        var suggestedArtist = document.getElementById('suggested-artist').value;
-      
-        // Enviar los datos a Google Sheets utilizando AJAX
-        var xhr = new XMLHttpRequest();
-        var url = 'https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec';
-      
-        xhr.open('POST', url);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-      
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            // Aquí puedes hacer algo si la solicitud fue exitosa
-            console.log('Datos enviados correctamente');
-          } else {
-            // Aquí puedes manejar errores si la solicitud falla
-            console.error('Error al enviar datos');
-          }
-        };
-      
-        var data = JSON.stringify({
-          suggestedSong: suggestedSong,
-          suggestedArtist: suggestedArtist
-        });
-      
-        xhr.send(data);
-      }
-    // Manejar el callback de la autorización
-    window.addEventListener('message', async (event) => {
-        if (event.data.type === 'spotify-auth') {
-            console.log('Código de autenticación recibido:', event.data.code);
-            await getToken(event.data.code);
-            alert('Autorización completada. Intenta añadir la canción nuevamente.');
-        }
-    });
+  var suggestedSong = document.getElementById('suggested-song').value;
+  var suggestedArtist = document.getElementById('suggested-artist').value;
+
+  var script = document.createElement('script');
+  script.src = 'https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec' + '?callback=handleResponse' + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
+  document.body.appendChild(script);
+}
+
+function handleResponse(response) {
+  console.log('Datos enviados correctamente:', response);
+}
+
 
     // Comprobar si el código de autorización está presente en la URL
     window.onload = () => {
