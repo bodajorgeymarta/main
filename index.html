@@ -843,6 +843,12 @@ async function checkIfTrackExists(trackUri) {
     return data.items.some(item => item.track.uri === trackUri);
 }
 
+// Función para eliminar el token de acceso del localStorage
+function clearAccessToken() {
+    localStorage.removeItem('spotifyToken');
+    localStorage.removeItem('spotifyTokenExpirationTime');
+}
+	
 async function addToPlaylist(trackUri) {
     const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
         method: 'POST',
@@ -854,7 +860,24 @@ async function addToPlaylist(trackUri) {
         clearSearch();
     } else {
         const errorData = await result.json();
-        throw errorData;
+        if (errorData.error && errorData.error.status === 401) {
+            // Error de autorización, eliminar el token de acceso
+            clearAccessToken();
+            console.error('Error de autorización:', errorData.error.message);
+            
+            // Volver a solicitar un nuevo token
+            await getClientToken();
+            
+            // Intentar agregar la canción nuevamente con el nuevo token
+            try {
+                await addToPlaylist(trackUri);
+            } catch (error) {
+                console.error('Error al volver a intentar agregar la canción:', error);
+                alert('Hubo un error al volver a intentar agregar la canción');
+            }
+        } else {
+            throw errorData;
+        }
     }
 }
 
