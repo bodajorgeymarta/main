@@ -848,19 +848,25 @@
     }
 	
     // Enviar sugerencia a Google Sheets
-    function suggestSong() {
+    // Definimos una variable global para almacenar la función de callback
+var handleResponse;
+
+function suggestSong() {
   var suggestedSong = document.getElementById('suggested-song').value;
   var suggestedArtist = document.getElementById('suggested-artist').value;
 
+  // Definimos la función de callback con un nombre único
+  var callbackName = 'callback' + Math.floor(Math.random() * 10000);
+  
+  // Asignamos la función de callback a la variable global
+  handleResponse = function(response) {
+    console.log('Datos enviados correctamente:', response);
+    alert('¡Gracias por la sugerencia! La hemos guardado y trataremos de ponerla ;)');
+  };
+
   var script = document.createElement('script');
-  var callbackName = 'callback' + Math.floor(Math.random() * 10000); // Generar un nombre de callback único
   script.src = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec' + '?callback=' + callbackName + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
   document.body.appendChild(script);
-}
-
-// Esta función de callback manejará la respuesta del servidor
-function handleResponse(response) {
-  console.log('Datos enviados correctamente:', response);
 }
 
 
