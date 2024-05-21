@@ -1356,6 +1356,12 @@ body.modal-open {
     height: auto;
     }
 
+    .center-block {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .center-image {
         display: flex;
         justify-content: center;
