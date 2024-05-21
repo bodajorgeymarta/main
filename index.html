@@ -725,7 +725,7 @@
     }
 </script>
 <script>
-    const clientId = '909dac1a57f84839bf029a975a8683a0';
+const clientId = '909dac1a57f84839bf029a975a8683a0';
     const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
     const playlistId = '6zGBP73Slgww0nQVPfeuBR';
@@ -804,8 +804,25 @@
             const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
             authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
         } else {
-            await addToPlaylist(trackUri);
+            const exists = await checkIfTrackExists(trackUri);
+            if (!exists) {
+                await addToPlaylist(trackUri);
+            } else {
+                alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
+                clearSearch();
+            }
         }
+    }
+
+    // Verificar si la canción ya está en la lista de reproducción
+    async function checkIfTrackExists(trackUri) {
+        const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
+        });
+
+        const data = await result.json();
+        return data.items.some(item => item.track.uri === trackUri);
     }
 
     // Añadir canción a la lista de reproducción
@@ -815,11 +832,20 @@
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
         });
 
-        if (result.status === 201) {
+        if (result.ok) { // Cambiar la condición para verificar si la respuesta es exitosa
             alert('Canción añadida a la lista de reproducción');
+            clearSearch();
         } else {
+            const errorData = await result.json();
+            console.error('Error al añadir la canción:', errorData);
             alert('Hubo un error al añadir la canción');
         }
+    }
+
+    // Limpiar búsqueda y resultados
+    function clearSearch() {
+        document.getElementById('song-search').value = '';
+        document.getElementById('search-results').innerHTML = '';
     }
 
     // Manejar el callback de la autorización
