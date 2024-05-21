@@ -769,6 +769,17 @@
         });
     }
 
+// Verificar si la canción ya existe en la lista de reproducción
+async function checkIfTrackExists(trackUri) {
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        method: 'GET',
+        headers: { 'Authorization': 'Bearer ' + token }
+    });
+
+    const data = await result.json();
+    return data.items.some(item => item.track.uri === trackUri);
+}
+
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
         if (!localStorage.getItem('spotifyToken')) {
