@@ -853,14 +853,15 @@
   var suggestedArtist = document.getElementById('suggested-artist').value;
 
   var script = document.createElement('script');
-  script.src = 'https://script.google.com/macros/s/AKfycbxsyN2-5EoHo92y3Xmrn94_M9itEmqu-2GUyVkHfVzkZdrTqf5sNlmKLgQLJkY35Sjj/exec' + '?callback=handleResponse' + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
+  var callbackName = 'callback' + Math.floor(Math.random() * 10000); // Generar un nombre de callback único
+  script.src = 'https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec' + '?callback=' + callbackName + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
   document.body.appendChild(script);
 }
 
+// Esta función de callback manejará la respuesta del servidor
 function handleResponse(response) {
   console.log('Datos enviados correctamente:', response);
 }
-
 
 
     // Comprobar si el código de autorización está presente en la URL
