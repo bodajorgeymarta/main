@@ -847,8 +847,9 @@ async function checkIfTrackExists(trackUri) {
 function clearAccessToken() {
     localStorage.removeItem('spotifyToken');
     localStorage.removeItem('spotifyTokenExpirationTime');
+    console.log('Token de acceso eliminado exitosamente.');
 }
-	
+
 async function addToPlaylist(trackUri) {
     const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
         method: 'POST',
@@ -868,7 +869,7 @@ async function addToPlaylist(trackUri) {
             // Volver a solicitar un nuevo token
             await getClientToken();
             
-            // Intentar agregar la canción nuevamente con el nuevo token
+            // Intentar agregar la canción nuevamente solo si se obtuvo un nuevo token
             try {
                 await addToPlaylist(trackUri);
             } catch (error) {
@@ -880,6 +881,7 @@ async function addToPlaylist(trackUri) {
         }
     }
 }
+
 
 function clearSearch() {
     document.getElementById('song-search').value = '';
