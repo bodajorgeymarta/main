@@ -725,7 +725,7 @@
     }
 </script>
 <script>
-const clientId = '909dac1a57f84839bf029a975a8683a0';
+    const clientId = '909dac1a57f84839bf029a975a8683a0';
     const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
     const playlistId = '6zGBP73Slgww0nQVPfeuBR';
@@ -801,7 +801,7 @@ const clientId = '909dac1a57f84839bf029a975a8683a0';
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackUri, trackName, artistName) {
         if (!localStorage.getItem('spotifyToken')) {
-            const authUrl = https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public;
+            const authUrl = 'https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public';
             authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
         } else {
             const exists = await checkIfTrackExists(trackUri);
