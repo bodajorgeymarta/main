@@ -852,6 +852,9 @@
 	function handleResponse(response) {
 	  console.log('Datos enviados correctamente:', response);
 	  alert('¡Gracias por tu sugerencia! La hemos guardado y trataremos de ponerla ;)');
+	  // Borramos los valores de los campos del formulario
+ 	  document.getElementById('suggested-song').value = '';
+ 	  document.getElementById('suggested-artist').value = '';
 	}
 	
 	function suggestSong() {
