@@ -851,37 +851,31 @@
     function suggestSong() {
         const suggestedSong = document.getElementById('suggested-song').value;
         const suggestedArtist = document.getElementById('suggested-artist').value;
-        const isAuthorized = document.getElementById('is-authorized').value;
         
         if (suggestedSong && suggestedArtist) {
-            if (isAuthorized === 'false') {
-                // Enviar sugerencia a Google Sheets
-                fetch(`https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec?callback=processResponse`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ song: suggestedSong, artist: suggestedArtist })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                    if (data.result === 'success') {
-                        alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
-                        document.getElementById('suggested-song').value = '';
-                        document.getElementById('suggested-artist').value = '';
-                    } else {
-                        alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-                    }
-                    })
-                    .catch(error => {
-                    console.error('Error al enviar la sugerencia:', error);
+            // Enviar sugerencia a Google Sheets
+            fetch(`https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec?callback=processResponse`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ song: suggestedSong, artist: suggestedArtist })
+                })
+                .then(response => response.json())
+                .then(data => {
+                if (data.result === 'success') {
+                    alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
+                    document.getElementById('suggested-song').value = '';
+                    document.getElementById('suggested-artist').value = '';
+                } else {
                     alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
-                    });
-            } else {
-                alert(`Sugerencia enviada: "${suggestedSong}" de ${suggestedArtist}. Gracias por tu sugerencia.`);
-                document.getElementById('suggested-song').value = '';
-                document.getElementById('suggested-artist').value = '';
-            }
+                }
+                })
+                .catch(error => {
+                console.error('Error al enviar la sugerencia:', error);
+                alert('Hubo un error al enviar tu sugerencia. Inténtalo de nuevo.');
+                });
+
         } else {
             alert('Por favor, completa ambos campos antes de enviar tu sugerencia.');
         }
