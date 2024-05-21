@@ -792,14 +792,14 @@
             const trackElement = document.createElement('div');
             trackElement.innerHTML = `
                 <p>${track.name} by ${track.artists[0].name}</p>
-                <button onclick="authorizeAndAddToPlaylist('${track.uri}')">Añadir a la Lista</button>
+                <button onclick="authorizeAndAddToPlaylist('${track.name}', '${track.artists[0].name}', '${track.uri}')">Añadir a la Lista</button>
             `;
             results.appendChild(trackElement);
         });
     }
 
     // Autorizar y añadir canción a la lista de reproducción
-    async function authorizeAndAddToPlaylist(trackUri) {
+    async function authorizeAndAddToPlaylist(trackName, artistName, trackUri) {
         if (!localStorage.getItem('spotifyToken')) {
             const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
             authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
