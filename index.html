@@ -805,6 +805,11 @@ async function checkIfTrackExists(trackUri) {
             }
         }
     }
+	// Limpiar el campo de búsqueda y los resultados
+function clearSearch() {
+    document.getElementById('song-search').value = '';
+    document.getElementById('search-results').innerHTML = '';
+}
 
     // Añadir canción a la lista de reproducción
     async function addToPlaylist(trackUri) {
