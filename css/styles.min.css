@@ -1347,3 +1347,15 @@ body.modal-open {
         color: white;
         border: 1px solid white;
     }
+
+    .img-responsive {
+    max-width: 25%;
+    height: auto;
+    }
+    
+    .center-block {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
