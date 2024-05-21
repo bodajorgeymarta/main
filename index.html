@@ -763,7 +763,7 @@
             await getClientToken();
         }
         const query = document.getElementById('song-search').value;
-        const result = await fetch(https://api.spotify.com/v1/search?q=${query}&type=track, {
+        const result = await fetch('https://api.spotify.com/v1/search?q=${query}&type=track', {
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
         });
@@ -804,7 +804,7 @@
 
     // Verificar si la canción ya está en la lista de reproducción
     async function checkIfTrackExists(trackUri) {
-        const result = await fetch(https://api.spotify.com/v1/playlists/${playlistId}/tracks, {
+        const result = await fetch('https://api.spotify.com/v1/playlists/${playlistId}/tracks', {
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
         });
@@ -815,7 +815,7 @@
 
     // Añadir canción a la lista de reproducción
     async function addToPlaylist(trackUri) {
-        const result = await fetch(https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}, {
+        const result = await fetch('https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}', {
             method: 'POST',
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
         });
