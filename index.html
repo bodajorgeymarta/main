@@ -713,6 +713,18 @@
     ga('send', 'pageview');
 </script>
 <script>
+    function copyText(elementId) {
+        var copyText = document.getElementById(elementId).innerText;
+        var textArea = document.createElement("textarea");
+        textArea.value = copyText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        alert("Texto copiado: " + copyText);
+    }
+</script>
+<script>
 const clientId = '909dac1a57f84839bf029a975a8683a0';
     const clientSecret = '5d5567dd1aff4a6d8e0ff4c2fcc971be';
     const redirectUri = 'https://jcarrami.github.io/bodacarramarta/callback';
