@@ -854,7 +854,7 @@
 
   var script = document.createElement('script');
   var callbackName = 'callback' + Math.floor(Math.random() * 10000); // Generar un nombre de callback único
-  script.src = 'https://script.google.com/macros/s/AKfycbzQ5mV4G4J6yx6ow4JxHBGHlGndVyBrylohY_XLksR85iTJ39xAtd6zGONKbMu5mhoZ/exec' + '?callback=' + callbackName + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
+  script.src = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec' + '?callback=' + callbackName + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
   document.body.appendChild(script);
 }
 
@@ -863,6 +863,15 @@ function handleResponse(response) {
   console.log('Datos enviados correctamente:', response);
 }
 
+
+    // Manejar el callback de la autorización
+    window.addEventListener('message', async (event) => {
+        if (event.data.type === 'spotify-auth') {
+            console.log('Código de autenticación recibido:', event.data.code);
+            await getToken(event.data.code);
+            alert('Autorización completada. Intenta añadir la canción nuevamente.');
+        }
+    });
 
     // Comprobar si el código de autorización está presente en la URL
     window.onload = () => {
