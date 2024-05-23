@@ -1312,6 +1312,10 @@ body.modal-open {
 #spotify {
     margin-bottom: -40px; /* Ajusta este valor según sea necesario */
 }
+
+#contactdetails {
+    margin-top: -70px;
+}
     .search-results div {
         background-color: #1db954;
         color: white;
