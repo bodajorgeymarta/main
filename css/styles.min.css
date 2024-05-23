@@ -1324,6 +1324,10 @@ body.modal-open {
 #alojamiento {
     margin-top: -90px;
 }
+
+#text-banquete {
+    margin-top: -70px;
+}
     .search-results div {
         background-color: #1db954;
         color: white;
