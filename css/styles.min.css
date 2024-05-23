@@ -949,6 +949,7 @@ header .member-actions {
     background: #fff;
     -webkit-transition: opacity .5s, visibility .6s, margin-top .5s;
     transition: opacity .5s, visibility .6s, margin-top .5s;
+    border: 10px solid #f8f9fd
 }
 .map-content-row { /* Asegúrate de agregar esta clase en tu div de clase 'row' dentro de #map-content */
     display: flex;
@@ -963,6 +964,7 @@ header .member-actions {
     background: #fff;
     -webkit-transition: opacity .5s, visibility .6s, margin-top .5s;
     transition: opacity .5s, visibility .6s, margin-top .5s;
+    border: 10px solid #f8f9fd
 }
 
 .map-content2-row { /* Asegúrate de agregar esta clase en tu div de clase 'row' dentro de #map-content */
