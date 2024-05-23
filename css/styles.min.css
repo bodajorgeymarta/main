@@ -1311,6 +1311,7 @@ body.modal-open {
 
 #spotify {
     margin-bottom: -40px; /* Ajusta este valor según sea necesario */
+    margin-top: -50px;
 }
 
 #contactdetails {
@@ -1403,7 +1404,7 @@ body.modal-open {
         justify-content: center;
         align-items: center;
         position: relative;
-        top: 10px; /* Ajusta este valor según sea necesario para colocar la imagen entre las secciones */
+        top: -10px; /* Ajusta este valor según sea necesario para colocar la imagen entre las secciones */
         z-index: 1;
     }
     
