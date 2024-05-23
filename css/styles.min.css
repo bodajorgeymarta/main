@@ -1298,6 +1298,7 @@ body.modal-open {
 
 #rsvp {
     margin-bottom: -100px; /* Ajusta este valor según sea necesario */
+    margin-top: -50px;
 }
 
 #map {
@@ -1395,7 +1396,7 @@ body.modal-open {
     .center-image2 img {
         max-width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
         height: auto;
-        border: 5px solid #ffffff; /* Añade un borde blanco para que se vea bien entre las secciones */
+        border: 5px solid #f8f9fd; /* Añade un borde blanco para que se vea bien entre las secciones */
         border-radius: 50%; /* Opcional: esto le dará un borde redondeado */
     }
 
@@ -1420,7 +1421,7 @@ body.modal-open {
         justify-content: center;
         align-items: center;
         position: relative;
-        top: -10px; /* Ajusta este valor según sea necesario para colocar la imagen entre las secciones */
+        top: -50px; /* Ajusta este valor según sea necesario para colocar la imagen entre las secciones */
         z-index: 1;
     }
     
