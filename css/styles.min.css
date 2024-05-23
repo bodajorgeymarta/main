@@ -944,7 +944,7 @@ header .member-actions {
 }
 
 #map-content {
-    margin-top: 5px;
+    margin-top: -60px;
     padding: 50px 60px;
     background: #fff;
     -webkit-transition: opacity .5s, visibility .6s, margin-top .5s;
@@ -959,7 +959,7 @@ header .member-actions {
 
 
 #map-content2 {
-    margin-top: 5px;
+    margin-top: -60px;
     padding: 50px 60px;
     background: #fff;
     -webkit-transition: opacity .5s, visibility .6s, margin-top .5s;
