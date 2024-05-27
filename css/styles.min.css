@@ -933,7 +933,6 @@ header .member-actions {
 
 #map-content-wrapper {
     position: relative;
-    margin-top: -502px;
     margin-bottom: 150px;
 }
 
@@ -943,7 +942,6 @@ header .member-actions {
 }
 
 #map-content {
-    margin-top: -60px;
     padding: 50px 60px;
     background: #fff;
     -webkit-transition: opacity .5s, visibility .6s, margin-top .5s;
