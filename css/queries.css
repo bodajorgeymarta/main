@@ -513,10 +513,11 @@
             width: 20px; /* Ajusta el ancho según sea necesario */
             height: 20px; /* Ajusta la altura según sea necesario */
             margin-top: 0; /* Ajusta el margen superior si es necesario */
-            margin-right: 0px;
             vertical-align: middle;
         }
-    
+    .rsvp .rsvp-form .form-input-group .radio-label input[type="radio"] {
+            margin-right: 0px; /* Espacio entre el radio y el texto */
+        }
 
 }
 
