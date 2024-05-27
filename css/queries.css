@@ -507,7 +507,7 @@
     .rsvp .rsvp-form .radio-label {
             display: inline-block; /* O 'inline-flex' si prefieres */
             min-width: 100px; /* Ajusta según la necesidad */
-            margin-right: 5px; /* Ajusta según la necesidad */
+            margin-right: 0px; /* Ajusta según la necesidad */
         }
     .rsvp .rsvp-form .radio-label input[type="radio"] {
             width: 20px; /* Ajusta el ancho según sea necesario */
