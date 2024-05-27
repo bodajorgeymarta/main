@@ -521,6 +521,7 @@
             height: 20px; /* Ajusta la altura según sea necesario */
             margin-top: 0; /* Ajusta el margen superior si es necesario */
             vertical-align: middle;
+            padding-left: 5px;
         }
 
 }
