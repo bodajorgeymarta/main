@@ -1599,4 +1599,8 @@ body.modal-open {
     font-family: 'SundaysFont', sans-serif;
     font-size: 80px; /* Ajusta según sea necesario */
 }
+.custom-font2 {
+    font-family: 'SundaysFont', sans-serif;
+    font-size: 60px; /* Ajusta según sea necesario */
+}
 
