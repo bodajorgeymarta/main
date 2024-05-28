@@ -1571,3 +1571,15 @@ body.modal-open {
         margin-right: 8px; /* Espacio entre el icono y el texto */
     }
 
+    #suggested-song {
+            width: 50%;
+        }
+
+    #suggested-artist {
+        width: 50%;
+    }
+
+    #song-search {
+        width: 50%;
+    }
+
