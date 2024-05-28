@@ -1542,3 +1542,32 @@ body.modal-open {
         border: 5px solid #f8f9fd; /* Añade un borde blanco para que se vea bien entre las secciones */
         border-radius: 50%; /* Opcional: esto le dará un borde redondeado */
     }
+
+    /* Estilos específicos para los botones en la sección de Spotify */
+    #spotify .spotify-btn {
+        font-size: 13px;
+        border: solid 2px;
+        border-radius: 40px;
+        display: inline-block;
+        text-transform: uppercase;
+        padding: 8px 30px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        background-color: #e8ca6f;
+        border-color: #e8ca6f;
+        margin-bottom: 20px;
+    }
+    
+    #spotify .spotify-btn:hover, 
+    #spotify .spotify-btn:focus {
+        color: #fff;
+        border-color: #d3b56a;
+        background-color: #d3b56a;
+        text-decoration: none;
+    }
+    
+    #spotify .spotify-btn i {
+        margin-right: 8px; /* Espacio entre el icono y el texto */
+    }
+
