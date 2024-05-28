@@ -1329,6 +1329,9 @@ body.modal-open {
     margin-top: -20px;
     margin-bottom: 25px;
 }
+#instagram {
+    margin-bottom: 20px;
+}
 
     .search-results div {
         background-color: #1db954;
