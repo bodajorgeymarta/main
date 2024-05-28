@@ -673,4 +673,16 @@
     .form-input-group select {
         width: calc(100% - 40px); /* Adjust width considering icon size */
     }
+
+    #suggested-song {
+        width: 100%;
+    }
+
+    #suggested-artist {
+        width: 100%;
+    }
+
+    #song-search {
+        width: 100%;
+    }
 }
