@@ -1587,4 +1587,16 @@ body.modal-open {
     font-size: 14px;
 }
 
+@font-face {
+    font-family: 'SundaysFont';
+    src: url('fonts/sundays-webfont.woff2') format('woff2'),
+         url('fonts/sundays-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.custom-font {
+    font-family: 'SundaysFont', sans-serif;
+    font-size: 80px; /* Ajusta según sea necesario */
+}
 
