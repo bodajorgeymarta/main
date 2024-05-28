@@ -1185,7 +1185,7 @@ body.modal-open {
     z-index:-1;
   }
 .countdown-container{
-    display:flex;
+    display:inline-flex;
   }
 .big-text{
     font-size:5rem;
