@@ -1589,8 +1589,8 @@ body.modal-open {
 
 @font-face {
     font-family: 'SundaysFont';
-    src: url('fonts/sundays-webfont.woff2') format('woff2'),
-         url('fonts/sundays-webfont.woff') format('woff');
+    src: url('../fonts/sundays-webfont.woff2') format('woff2'),
+         url('../fonts/sundays-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
