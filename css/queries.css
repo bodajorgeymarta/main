@@ -492,6 +492,17 @@
         font-size: 2rem;
         letter-spacing: 1rem;
       }
+
+    .rsvp .rsvp-form .form-input-group select[name="Transporte"],
+        .rsvp .rsvp-form .form-input-group select[name="Alergias"],
+        .rsvp .rsvp-form .form-input-group select[name="Dieta Específica"] {
+            margin-left: 60px;
+        }
+    .rsvp .rsvp-form .radio-label {
+            display: inline-block; /* O 'inline-flex' si prefieres */
+            min-width: 100px; /* Ajusta según la necesidad */
+            margin-right: 5px; /* Ajusta según la necesidad */
+        }
 }
 
 @media screen and (max-width: 768px) {
@@ -692,6 +703,6 @@
 }
     .custom-font2 {
         font-family: 'SundaysFont', sans-serif;
-        font-size: 40px; /* Ajusta según sea necesario */
+        font-size: 38px; /* Ajusta según sea necesario */
 }
 }
