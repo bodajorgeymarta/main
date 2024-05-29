@@ -688,10 +688,10 @@
 
     .custom-font {
     font-family: 'SundaysFont', sans-serif;
-    font-size: 55px; /* Ajusta según sea necesario */
+    font-size: 50px; /* Ajusta según sea necesario */
 }
     .custom-font2 {
         font-family: 'SundaysFont', sans-serif;
-        font-size: 50px; /* Ajusta según sea necesario */
+        font-size: 40px; /* Ajusta según sea necesario */
 }
 }
