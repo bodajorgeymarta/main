@@ -1604,3 +1604,17 @@ body.modal-open {
     font-size: 60px; /* Ajusta según sea necesario */
 }
 
+.instructions {
+    margin-top: 20px;
+}
+.instructions h3 {
+    margin-bottom: 20px;
+}
+.download-buttons img {
+    width: 150px;
+    margin-right: 10px;
+}
+.qr-code img {
+    width: 150px;
+    margin-top: 20px;
+}
