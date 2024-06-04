@@ -1612,9 +1612,10 @@ body.modal-open {
 }
 .qr-code img {
     width: 150px;
-    margin-top: 20px;
+    margin-top: -20px;
+    margin-bottom: 10px;
 }
 
-.insta1 img {
+.insta1 {
     width: 550px;
 }
