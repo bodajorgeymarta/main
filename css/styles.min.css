@@ -1585,6 +1585,7 @@ body.modal-open {
 
     #search-results {
         width: 50%;
+        display: inline-block
     }
 
     .gift-card.bank-details p {
