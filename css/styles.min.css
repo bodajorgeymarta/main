@@ -1583,6 +1583,10 @@ body.modal-open {
         width: 50%;
     }
 
+    #search-results {
+        width: 50%;
+    }
+
     .gift-card.bank-details p {
     font-size: 14px;
 }
