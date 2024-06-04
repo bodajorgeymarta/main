@@ -745,6 +745,10 @@
         width: 100%;
     }
 
+    #search-results {
+        width: 100%;
+    }
+
     .custom-font {
     font-family: 'SundaysFont', sans-serif;
     font-size: 50px; /* Ajusta según sea necesario */
