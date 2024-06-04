@@ -816,10 +816,6 @@ header .member-actions {
     color: #3d4351;
 }
 
-#instagram img {
-    width: 100%;
-}
-
 #eng-pics img {
     width: 100%;
     height: auto;
@@ -1617,4 +1613,8 @@ body.modal-open {
 .qr-code img {
     width: 150px;
     margin-top: 20px;
+}
+
+.insta1 img {
+    width: 550px;
 }
