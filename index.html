@@ -833,7 +833,7 @@
 
         const data = await result.json();
         displayResults(data.tracks.items);
-	localStorage.removeItem('spotifyToken'); // Eliminar el token después de completar la búsqueda
+        localStorage.removeItem('spotifyToken'); // Eliminar el token después de completar la búsqueda
     }
 
     // Mostrar resultados
@@ -852,47 +852,23 @@
 
     // Autorizar y añadir canción a la lista de reproducción
     async function authorizeAndAddToPlaylist(trackName, artistName, trackUri) {
-        if (!localStorage.getItem('spotifyToken')) {
-            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
-            authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
-        } else {
-            const exists = await checkIfTrackExists(trackUri);
-            if (!exists) {
-                await addToPlaylist(trackUri);
-            } else {
-                alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
-                clearSearch();
-            }
-	    localStorage.removeItem('spotifyToken'); // Eliminar el token después de añadir la canción
-        }
+        addSongToGoogleSheets(trackName, artistName);
     }
 
-    // Verificar si la canción ya está en la lista de reproducción
-    async function checkIfTrackExists(trackUri) {
-        const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-            method: 'GET',
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
-        });
+    // Función para enviar datos a Google Sheets
+    function addSongToGoogleSheets(trackName, artistName) {
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec';
 
-        const data = await result.json();
-        return data.items.some(item => item.track.uri === trackUri);
+        const script = document.createElement('script');
+        script.src = `${scriptUrl}?callback=handleResponse&suggestedSong=${encodeURIComponent(trackName)}&suggestedArtist=${encodeURIComponent(artistName)}`;
+        document.body.appendChild(script);
     }
 
-    // Añadir canción a la lista de reproducción
-    async function addToPlaylist(trackUri) {
-        const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackUri}`, {
-		method: 'POST',
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('spotifyToken') }
-        });
-
-        if (result.ok) { // Cambiar la condición para verificar si la respuesta es exitosa
-            alert('Canción añadida a la lista de reproducción');
-            clearSearch();
-        } else {
-            const errorData = await result.json();
-            console.error('Error al añadir la canción:', errorData);
-            alert('Hubo un error al añadir la canción');
-        }
+    // Función de callback para manejar la respuesta de Google Sheets
+    function handleResponse(response) {
+        console.log('Datos enviados correctamente:', response);
+        alert('¡Gracias por tu sugerencia! La hemos guardado y trataremos de ponerla ;)');
+        clearSearch();
     }
 
     // Limpiar búsqueda y resultados
@@ -900,27 +876,16 @@
         document.getElementById('song-search').value = '';
         document.getElementById('search-results').innerHTML = '';
     }
-	
+
     // Enviar sugerencia a Google Sheets
-	// Definimos una función de callback en el ámbito global
-	function handleResponse(response) {
-	  console.log('Datos enviados correctamente:', response);
-	  alert('¡Gracias por tu sugerencia! La hemos guardado y trataremos de ponerla ;)');
-	  // Borramos los valores de los campos del formulario
- 	  document.getElementById('suggested-song').value = '';
- 	  document.getElementById('suggested-artist').value = '';
-	}
-	
-	function suggestSong() {
-	  var suggestedSong = document.getElementById('suggested-song').value;
-	  var suggestedArtist = document.getElementById('suggested-artist').value;
-	
-	  var script = document.createElement('script');
-	  script.src = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec' + '?callback=handleResponse' + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
-	  document.body.appendChild(script);
-	}
+    function suggestSong() {
+        var suggestedSong = document.getElementById('suggested-song').value;
+        var suggestedArtist = document.getElementById('suggested-artist').value;
 
-
+        var script = document.createElement('script');
+        script.src = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec' + '?callback=handleResponse' + '&suggestedSong=' + encodeURIComponent(suggestedSong) + '&suggestedArtist=' + encodeURIComponent(suggestedArtist);
+        document.body.appendChild(script);
+    }
 
     // Manejar el callback de la autorización
     window.addEventListener('message', async (event) => {
