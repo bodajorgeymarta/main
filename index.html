@@ -851,21 +851,20 @@
     }
 
     // Autorizar y añadir canción a la lista de reproducción
-    async function authorizeAndAddToPlaylist(trackName, artistName, trackUri) {
-        if (!localStorage.getItem('spotifyToken')) {
-            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public`;
-            authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
+async function authorizeAndAddToPlaylist(trackName, artistName, trackUri) {
+    if (!localStorage.getItem('spotifyToken')) {
+        const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-modify-public playlist-modify-private`;
+        authWindow = window.open(authUrl, 'Spotify Auth', 'width=600,height=800');
+    } else {
+        const exists = await checkIfTrackExists(trackUri);
+        if (!exists) {
+            await addToPlaylist(trackUri);
         } else {
-            const exists = await checkIfTrackExists(trackUri);
-            if (!exists) {
-                await addToPlaylist(trackUri);
-            } else {
-                alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
-                clearSearch();
-            }
-	    localStorage.removeItem('spotifyToken'); // Eliminar el token después de añadir la canción
+            alert(`La canción "${trackName}" de ${artistName} ya está en la lista de reproducción.`);
+            clearSearch();
         }
     }
+}
 
     // Verificar si la canción ya está en la lista de reproducción
     async function checkIfTrackExists(trackUri) {
