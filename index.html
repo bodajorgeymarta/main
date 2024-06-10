@@ -857,7 +857,7 @@
 
     // Función para enviar datos a Google Sheets
     function addSongToGoogleSheets(trackName, artistName) {
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbx5xDht2-Z0eXncBMLDIGfqcvMO_edi7K9xDZ3yQbluoeDuoNZd9SOkfq9R_TRHnJgZ/exec';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzKsTUBkYf4xO-HfoHSSqAax719rrjwvl7FHyfIbjgbKptglXp2qpvtXnRBzBHEHBn3/exec';
 
         const script = document.createElement('script');
         script.src = `${scriptUrl}?callback=handleResponse&suggestedSong=${encodeURIComponent(trackName)}&suggestedArtist=${encodeURIComponent(artistName)}`;
